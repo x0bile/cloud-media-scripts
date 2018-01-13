@@ -44,7 +44,7 @@ mongo_host="localhost"
 mongo_user=""
 mongo_password=""
 
-plexdrive_options="--temp=${plexdrive_temp_dir} -o allow_other,read_only --clear-chunk-max-size=300G --clear-chunk-age=24h --chunk-size=10M"
+plexdrive_options="--temp=${plexdrive_temp_dir} -o allow_other,read_only --clear-chunk-max-size=20G --clear-chunk-age=24h --chunk-size=10M"
 
 
 ###############################################################################
@@ -55,7 +55,7 @@ rclone_bin="${rclone_dir}/rclone"
 
 rclone_config="${rclone_dir}/rclone.conf"
 rclone_options="--buffer-size 500M --checkers 16"
-rclone_mount_options="${rclone_options} --read-only --allow-non-empty --allow-other --max-read-ahead 30G"
+rclone_mount_options="${rclone_options} --read-only --allow-non-empty --allow-other --max-read-ahead 5G"
 
 # Rclone endpoints
 rclone_cloud_endpoint="gd-crypt:"
@@ -83,8 +83,8 @@ remove_files_based_on="space"
 
 
 # Remove media files based on 'time'
-remove_files_older_than=60 # In days
+remove_files_older_than=20 # In days
 
 # Remove media files based on 'space'
-remove_files_when_space_exceeds=500 # In Gigabytes
-freeup_atleast=300  # In Gigabytes
+remove_files_when_space_exceeds=20 # In Gigabytes
+freeup_atleast=10 # In Gigabytes
