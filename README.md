@@ -7,6 +7,10 @@ The config right now is configured to have atleast 1 TB for caching and a decent
 
 ### I've created another repository with this included in a docker image. Check it out [here](https://github.com/madslundt/docker-cloud-media-scripts)
 
+# Why fork?
+
+Original project's initial setup fails when using a blank library, e.g. empty google-drive.
+
 # Easy install
 git, curl and bash is needed to run easy install.
 ```
@@ -15,13 +19,13 @@ sudo apt-get install git-core curl bash -y
 
 Now run:
 ```
-bash <( curl -Ls https://github.com/madslundt/cloud-media-scripts/raw/master/INSTALL )
+bash <( curl -Ls https://github.com/x0bile/cloud-media-scripts/raw/master/INSTALL )
 ```
 
 By default this will place cloud-media-scripts in the directory `./cloud-media-scripts`. An extra argument can be added to change this
 
 ```
-bash <( curl -Ls https://github.com/madslundt/cloud-media-scripts/raw/master/INSTALL ) [PATH]
+bash <( curl -Ls https://github.com/x0bile/cloud-media-scripts/raw/master/INSTALL ) [PATH]
 ```
 
 This has only been tested on Ubuntu 16.04+. Please create an issue if you have any problems.
