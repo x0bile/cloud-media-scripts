@@ -69,7 +69,9 @@ mount_rclone () {
 	if ! mountpoint -q "$cloud_decrypt_dir"; then
 		sleep 5
 		count=5
-		while [ -z "$(ls -A ${cloud_encrypt_dir})" ]
+
+                # In the original project the following loop would run indefinitely when $cloud_encrypt_dir is empty.
+		while [ "$1" == "n" ] && [ -z "$(ls -A ${cloud_encrypt_dir})" ]
 		do
 			if [ "$count" == "0" ]; then
                                 echo "[ $(date ${date_format}) ] Could not read mountpoint: ${cloud_encrypt_dir}"
@@ -99,7 +101,9 @@ mount_union () {
 	if ! mountpoint -q "${local_media_dir}"; then
 		sleep 5
 		count=5
-		while [ -z "$(ls -A ${cloud_decrypt_dir})" ]
+
+                # In the original project the following loop would run indefinitely when $cloud_decrypt_dir is empty.
+		while [ "$1" == "n" ] && [ -z "$(ls -A ${cloud_decrypt_dir})" ]
 		do
 			if [ "$count" == "0" ]; then
                                 echo "[ $(date ${date_format}) ] Could not read mountpoint: ${cloud_decrypt_dir}"
@@ -123,11 +127,16 @@ mount_union () {
 
 ###############################################################################
 echo "[ $(date ${date_format}) ] ###### Start Mount ######"
+
+while [ $is_empty_drive != "y" ] && [ $is_empty_drive != "n" ]; do
+  read -p "Are you mounting empty directories, e.g. no existing media in google drive? (y/n): " is_empty_drive
+done
+
 mount_plexdrive
 if [ "$encrypt_media" != "0" ]; then
-	mount_rclone
+	mount_rclone $is_empty_drive
 else
 	echo "[ $(date ${date_format}) ] No encryption. Skipping Rclone mount."
 fi
-mount_union
+mount_union $is_empty_drive
 echo "[ $(date ${date_format}) ] ###### Mounted successfully ######"
