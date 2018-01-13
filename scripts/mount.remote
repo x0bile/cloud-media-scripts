@@ -128,7 +128,7 @@ mount_union () {
 ###############################################################################
 echo "[ $(date ${date_format}) ] ###### Start Mount ######"
 
-while [ $is_empty_drive != "y" ] && [ $is_empty_drive != "n" ]; do
+while [ "$is_empty_drive" != "y" ] && [ "$is_empty_drive" != "n" ]; do
   read -p "Are you mounting empty directories, e.g. no existing media in google drive? (y/n): " is_empty_drive
 done
 
