@@ -15,7 +15,7 @@ if [ -e "${mypwd}/config" ]; then
     exit 02
 fi
 
-git clone "https://github.com/madslundt/cloud-media-scripts.git" "${mypwd}"
+git clone "https://github.com/x0bile/cloud-media-scripts.git" "${mypwd}"
 
 mkdir -p "${mypwd}/logs"
 
